@@ -1,5 +1,6 @@
 package models;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,10 +12,15 @@ public class WorkUnit {
     public WorkUnit() {
     }
 
+    public WorkUnit(String name) {
+        this.name = name;
+    }
+
     public WorkUnit(String name, String phone) {
         this.name = name;
         this.phone = phone;
     }
+
 
 
     public String getName() {

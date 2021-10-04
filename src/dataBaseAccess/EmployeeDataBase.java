@@ -39,5 +39,34 @@ public class EmployeeDataBase extends DataBaseAccess{
             return Collections.emptyList();
         }
     }
+
+    public int findByName (String firstName , String lastName ) throws SQLException {
+        int id = -1 ;
+        if (getConnection()!= null) {
+            Statement statement = getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(String.format("select id from where first_name  = '%s' and last_name = '%s' ", firstName, lastName));
+            while (resultSet.next()) {
+                id = resultSet.getInt(1);
+
+            }
+        }
+        return  id;
+    }
+
+    public boolean ubdateName (String newFirstName , String newLastName , String currentFirsName , String currentLastName ) throws SQLException {
+
+        int employeeID = findByName(currentFirsName,currentLastName);
+                if (employeeID > 0 ) {
+                    if (getConnection() != null) {
+                        Statement statement = getConnection().createStatement();
+                        String sql = String.format("update employee set first_name = '%s'  and last_name ='%s'  where employee_id ='%d'", employeeID, newFirstName, newLastName);
+                        int result = statement.executeUpdate(sql);
+                        if (result > 0) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+    }
 }
 

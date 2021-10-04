@@ -6,22 +6,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class EmployeeDataBase {
+public class EmployeeDataBase extends DataBaseAccess{
 
-    private Connection connection;
     public EmployeeDataBase() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/maktab58_HW5_jdbc", "mona_razbani", "Pendi_Pengi142131");
-    }
-
-    public Connection getConnection() {
-        return connection;
+        super();
     }
 
     public int save(Employee employee) throws SQLException {
         if (getConnection() != null) {
             Statement statement = getConnection().createStatement();
-            String sqlQuery = String.format("INSERT INTO employee (first_name, last_name , employee_number ) VALUES ('%s','%s','%d)", employee.getFirst_name(), employee.getLast_name(), employee.getEmployee_number());
+            String sqlQuery = String.format("INSERT INTO employee (first_name, last_name , employee_number ,birthday , work_unit_fk ) VALUES ('%s','%s','%d ,%tF, %d )", employee.getFirst_name(), employee.getLast_name(), employee.getEmployee_number(), employee.getBirthday_date(),employee.getWorkUnit());
             int i = statement.executeUpdate(sqlQuery);
             return i;
         } else {

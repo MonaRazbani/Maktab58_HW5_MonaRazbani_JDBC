@@ -1,6 +1,5 @@
 package models;
-
-import java.util.Date;
+import java.sql.Date;
 
 public class Employee {
  private String first_name;
@@ -8,6 +7,17 @@ public class Employee {
  private Date birthday_date;
  private double employee_number;
  private WorkUnit workUnit;
+
+ public Employee() {
+   }
+
+ public Employee(String first_name, String last_name, Date birthday_date, double employee_number, WorkUnit workUnit) {
+  this.first_name = first_name;
+  this.last_name = last_name;
+  this.birthday_date = birthday_date;
+  this.employee_number = employee_number;
+  this.workUnit = workUnit;
+ }
 
  public String getFirst_name() {
   return first_name;

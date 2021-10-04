@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorkUnit {
-    private int id ;
     private String name ;
     private String phone ;
     private List<Employee> employeeList = new ArrayList<>();
 
-    public int getId() {
-        return id;
+    public WorkUnit() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public WorkUnit(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
     }
+
 
     public String getName() {
         return name;
@@ -40,7 +40,6 @@ public class WorkUnit {
     @Override
     public String toString() {
         return "WorkUnit{" +
-                "id=" + id +
                 ", name='" + name +
                 ", phone='" + phone +
                 ", employeeList=" + employeeList +
